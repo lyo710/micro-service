@@ -1,0 +1,2 @@
+#org.eclipse.jetty.websocket.jsr356.server.deploy.WebSocketServerContainerInitializer
+com.baidu.ub.msoa.container.support.bundle.BundleInitializer

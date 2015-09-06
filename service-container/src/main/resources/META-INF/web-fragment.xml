@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright © 2010 www.myctu.cn. All rights reserved.
+  -->
+
+<web-fragment xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-fragment_3_0.xsd"
+              version="3.0" metadata-complete="false">
+
+    <!-- 说明如果当前项目有使用annotation声明的servlet或者filter,那么metadata-complete需要声明为false -->
+    <!-- metadata-complete=true时,容器只会扫描当前文件中的配置,不再扫描文件所在jar中声明的配置 -->
+
+    <!-- 名字为plugin名称,必须保证全局唯一 -->
+    <name>micro_service_container</name>
+
+</web-fragment>

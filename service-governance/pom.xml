@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>msoa</artifactId>
+        <groupId>com.baidu.ub</groupId>
+        <version>20150622</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.baidu.ub.msoa</groupId>
+    <artifactId>service-governance</artifactId>
+    <version>20150622</version>
+
+    <properties>
+        <jgroups.version>3.6.4</jgroups.version>
+        <!--<gemfire.version>8.1.0</gemfire.version>-->
+        <!--<spring-data-gemfire.version>1.6.1.RELEASE</spring-data-gemfire.version>-->
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.5.2</version>
+                <configuration>
+                    <descriptors>
+                        <descriptor>assembly-war.xml</descriptor>
+                        <descriptor>assembly-bin.xml</descriptor>
+                    </descriptors>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <!--<finalName>ROOT</finalName>-->
+                </configuration>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+            </resource>
+        </resources>
+    </build>
+
+    <dependencies>
+        <!-- logger -->
+        <dependency>
+            <groupId>com.baidu.ub.msoa.bom</groupId>
+            <artifactId>logback-bom</artifactId>
+            <type>pom</type>
+            <version>20150622</version>
+        </dependency>
+        <!-- json -->
+        <dependency>
+            <groupId>com.baidu.ub.msoa.bom</groupId>
+            <artifactId>json-bom</artifactId>
+            <type>pom</type>
+            <version>20150622</version>
+        </dependency>
+        <!-- protobuf -->
+        <dependency>
+            <groupId>com.baidu.ub.msoa.bom</groupId>
+            <artifactId>protobuf-bom</artifactId>
+            <type>pom</type>
+            <version>20150622</version>
+        </dependency>
+        <!-- spring -->
+        <dependency>
+            <groupId>com.baidu.ub.msoa.bom</groupId>
+            <artifactId>spring-bom</artifactId>
+            <type>pom</type>
+            <version>20150622</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+            <version>${spring.version}</version>
+        </dependency>
+        <!-- jetty -->
+        <!--<dependency>-->
+            <!--<groupId>com.baidu.ub.msoa.bom</groupId>-->
+            <!--<artifactId>jetty-bom</artifactId>-->
+            <!--<optional>true</optional>-->
+            <!--<type>pom</type>-->
+            <!--<version>20150622</version>-->
+        <!--</dependency>-->
+        <!-- STOMP -->
+        <!--<dependency>-->
+            <!--<groupId>asia.stampy</groupId>-->
+            <!--<artifactId>stampy-core</artifactId>-->
+            <!--<version>1.0-RELEASE</version>-->
+        <!--</dependency>-->
+        <!-- micro service container -->
+        <dependency>
+            <groupId>com.baidu.ub.msoa</groupId>
+            <artifactId>service-container</artifactId>
+            <version>20150622</version>
+        </dependency>
+        <!-- cluster support -->
+        <dependency>
+            <groupId>org.jgroups</groupId>
+            <artifactId>jgroups</artifactId>
+            <version>${jgroups.version}</version>
+        </dependency>
+        <!-- zookeeper -->
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
+            <version>3.4.0</version>
+        </dependency>
+        <!-- test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+            <version>${junit.version}</version>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>spring-plugins-repository</id>
+            <name>Spring Artifactory Plugins(Dependencies) Repository</name>
+            <url>http://repo.springsource.org/plugins-release</url>
+        </repository>
+        <!--<repository>-->
+        <!--<id>gemfire-repository</id>-->
+        <!--<name>Gemfire Repository</name>-->
+        <!--<url>http://dist.gemstone.com/maven/release</url>-->
+        <!--</repository>-->
+    </repositories>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>${basedir}/profile/dev</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+    </profiles>
+</project>

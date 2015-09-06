@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- For assistance related to logback-translator or configuration -->
+<!-- files in general, please contact the logback user mailing list -->
+<!-- at http://www.qos.ch/mailman/listinfo/logback-user -->
+<!-- -->
+<!-- For professional support please see -->
+<!-- http://www.qos.ch/shop/products/professionalSupport -->
+<!-- -->
+<configuration scan="false">
+
+    <appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/tmp/service-governance.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ssS} %5p [%c]:%L-%m%n</pattern>
+        </encoder>
+        <prudent>false</prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>/tmp/service-governance.%d{yyyy-MM-dd-HH}.log.gz
+            </fileNamePattern>
+            <!-- keep 24*30 hour' worth of history -->
+            <maxHistory>720</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <root level="warn">
+        <appender-ref ref="logfile"/>
+    </root>
+
+    <logger name="com.baidu" level="info"/>
+
+
+    <!-- <logger service="org.springframework" level="debug" /> -->
+    <!--<logger service="org.eclipse.jetty" level="debug"/>-->
+</configuration>

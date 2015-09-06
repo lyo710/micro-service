@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.baidu.ub</groupId>
+        <artifactId>msoa</artifactId>
+        <version>20150622</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.baidu.ub.msoa</groupId>
+    <artifactId>example</artifactId>
+    <packaging>pom</packaging>
+    <version>20150622</version>
+    <modules>
+        <module>account-service</module>
+        <module>room-service</module>
+        <module>integration-server</module>
+    </modules>
+
+    <dependencies>
+        <!-- logger -->
+        <dependency>
+            <groupId>com.baidu.ub.msoa.bom</groupId>
+            <artifactId>logback-bom</artifactId>
+            <type>pom</type>
+            <version>20150622</version>
+        </dependency>
+        <!-- json -->
+        <dependency>
+            <groupId>com.baidu.ub.msoa.bom</groupId>
+            <artifactId>json-bom</artifactId>
+            <optional>true</optional>
+            <type>pom</type>
+            <version>20150622</version>
+        </dependency>
+        <!-- protobuf -->
+        <dependency>
+            <groupId>com.baidu.ub.msoa.bom</groupId>
+            <artifactId>protobuf-bom</artifactId>
+            <optional>true</optional>
+            <type>pom</type>
+            <version>20150622</version>
+        </dependency>
+        <!-- spring framework -->
+        <dependency>
+            <groupId>com.baidu.ub.msoa.bom</groupId>
+            <artifactId>spring-bom</artifactId>
+            <optional>true</optional>
+            <type>pom</type>
+            <version>20150622</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+            <version>${spring.version}</version>
+        </dependency>
+        <!-- jetty server -->
+        <dependency>
+            <groupId>com.baidu.ub.msoa.bom</groupId>
+            <artifactId>jetty-bom</artifactId>
+            <type>pom</type>
+            <version>20150622</version>
+        </dependency>
+        <!-- service container-->
+        <dependency>
+            <groupId>com.baidu.ub.msoa</groupId>
+            <artifactId>service-container</artifactId>
+            <version>20150622</version>
+        </dependency>
+        <!-- unit test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+            <version>${junit.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

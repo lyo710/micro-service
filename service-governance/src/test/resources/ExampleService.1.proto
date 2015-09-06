@@ -1,0 +1,47 @@
+// ExampleServiceUpdate1
+package proto.example.com.baidu.ub.microservice.governance.test.integration.1_0;
+
+option provider = "example";
+option service = "exampleService";
+option version = "1.0";
+option return_get = "proto.example.com.baidu.ub.microservice.governance.test.integration.Room";
+option argument_get_0 = "java.lang.String";
+option return_count = "int";
+option argument_count_0 = "proto.example.com.baidu.ub.microservice.governance.test.integration.User";
+option return_send = "proto.example.com.baidu.ub.microservice.governance.test.integration.Response";
+option argument_send_0 = "int";
+option argument_send_1 = "proto.example.com.baidu.ub.microservice.governance.test.integration.Request";
+
+message proto.example.com.baidu.ub.microservice.governance.test.integration.Room {
+  required string name = 1;
+}
+message proto.example.com.baidu.ub.microservice.governance.test.integration.Group {
+  required string name = 1;
+  optional proto.example.com.baidu.ub.microservice.governance.test.integration.Room room = 2;
+}
+message proto.example.com.baidu.ub.microservice.governance.test.integration.User {
+  required string name = 1;
+  required proto.example.com.baidu.ub.microservice.governance.test.integration.Group group = 2;
+}
+message proto.example.com.baidu.ub.microservice.governance.test.integration.Response {
+  required bool success = 1;
+  required int32 code = 2;
+  required string description = 3;
+}
+enum proto.example.com.baidu.ub.microservice.governance.test.integration.Type {
+  snyc = 1;
+  asnyc = 2;
+}
+message proto.example.com.baidu.ub.microservice.governance.test.integration.Role {
+  required string name = 1;
+}
+message proto.example.com.baidu.ub.microservice.governance.test.integration.Request {
+  required int32 index = 1;
+  required int64 time = 2;
+  required double cost = 3;
+  required string description = 4;
+  required proto.example.com.baidu.ub.microservice.governance.test.integration.Type type = 5;
+  required proto.example.com.baidu.ub.microservice.governance.test.integration.User creator = 6;
+  repeated proto.example.com.baidu.ub.microservice.governance.test.integration.Role roles = 7;
+  optional string option = 8;
+}

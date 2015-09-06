@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3 http://maven.apache.org/xsd/assembly-1.1.3.xsd">
+
+    <id>governance-server</id>
+
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+
+    <includeBaseDirectory>false</includeBaseDirectory>
+
+    <files>
+        <file>
+            <source>start.sh</source>
+        </file>
+        <file>
+            <source>stop.sh</source>
+        </file>
+    </files>
+
+    <fileSets>
+        <fileSet>
+            <directory>src/main/resources</directory>
+            <outputDirectory>conf</outputDirectory>
+            <excludes>
+                <exclude>web.xml</exclude>
+                <exclude>META-INF/**</exclude>
+            </excludes>
+        </fileSet>
+
+        <fileSet>
+            <directory>profile/prd</directory>
+            <outputDirectory>conf</outputDirectory>
+        </fileSet>
+    </fileSets>
+
+    <dependencySets>
+        <!-- third part lib -->
+        <dependencySet>
+            <excludes>
+                <exclude>com.baidu.ub.msoa:*</exclude>
+            </excludes>
+            <useProjectArtifact>true</useProjectArtifact>
+            <outputDirectory>lib</outputDirectory>
+        </dependencySet>
+
+        <!-- service bundle -->
+        <dependencySet>
+            <includes>
+                <include>com.baidu.ub.msoa:*</include>
+            </includes>
+            <useProjectArtifact>true</useProjectArtifact>
+            <outputDirectory>bundles</outputDirectory>
+        </dependencySet>
+    </dependencySets>
+
+</assembly>

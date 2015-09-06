@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.baidu.ub.msoa</groupId>
+        <artifactId>example</artifactId>
+        <version>20150622</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.baidu.ub.msoa.example</groupId>
+    <artifactId>integration-server</artifactId>
+    <version>20150622</version>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.5.2</version>
+                <configuration>
+                    <descriptors>
+                        <descriptor>assembly.xml</descriptor>
+                    </descriptors>
+                    <finalName>ROOT</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <!--<dependency>-->
+            <!--<groupId>com.baidu.ub.msoa.example</groupId>-->
+            <!--<artifactId>room-service-stub</artifactId>-->
+            <!--<scope>system</scope>-->
+            <!--<systemPath>${basedir}/example.roomservice-stub-1.0.jar</systemPath>-->
+            <!--<version>1.0</version>-->
+        <!--</dependency>-->
+    </dependencies>
+
+    <profiles>
+
+        <!-- 依赖外部测试环境,或者本地mock -->
+        <profile>
+            <id>distribute-stub</id>
+            <dependencies>
+                <dependency>
+                    <groupId>msoa.provider-1</groupId>
+                    <artifactId>roomService</artifactId>
+                    <version>20150901</version>
+                </dependency>
+            </dependencies>
+            <repositories>
+                <repository>
+                    <id>service-governance</id>
+                    <url>http://127.0.0.1:8156/service-governance/maven</url>
+                </repository>
+            </repositories>
+        </profile>
+
+        <!-- 将所有service bundle在本地启动,不再依赖外部应用 -->
+        <profile>
+            <id>integration</id>
+            <dependencies>
+                <dependency>
+                    <groupId>com.baidu.ub.msoa.example</groupId>
+                    <artifactId>account-service</artifactId>
+                    <version>20150622</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>com.baidu.ub.msoa.example</groupId>
+                    <artifactId>room-service</artifactId>
+                    <version>20150622</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+</project>
