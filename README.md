@@ -1,4 +1,3 @@
-# micro-service
 Micro Java Web Framework
 =====================
 
